@@ -18,7 +18,7 @@
     (lambda (char) (list? (member char (cdr compartments))))
     (car compartments))))
 
-; compute the proper char code
+; compute the proper char priority
 (define (get-priority char)
   (let ([code (char->integer char)])
     (if (< code 91) (- code 38) (- code 96))))
@@ -32,7 +32,7 @@
 (get-priority (find-common-item (div-rucksack "ttgJtRGJQctTZtZT")))
 (get-priority (find-common-item (div-rucksack "CrZsJsPPZsGzwwsLwLmpwMDw")))
 
-
+; --- All together ---
 (apply + (map (lambda (i)
                 (get-priority (find-common-item (div-rucksack i))))
               (read-lines "input.txt")))
