@@ -32,8 +32,8 @@ export function handleCommands(commandText: string) {
 // ---------- MAIN ----------
 
 async function main() {
-  // const text = await loadFile('example_input.txt')
-  const text = await loadFile('input.txt')
+  // const text = await loadFile('data/example_input.txt')
+  const text = await loadFile('data/input.txt')
 
   const [crateDrawing, commandText] = text.split('\n\n')
 
