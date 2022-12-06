@@ -9,10 +9,15 @@ const displayState = () => {
 
 // ----------- UPDATE STATE ----------
 
-const move = (nTimes: number, fromStack: number, toStack: number) => {
-  for (let i = 0; i < nTimes; i++) {
-    STATE[toStack].push(STATE[fromStack].pop())
-  }
+const move = (n: number, fromStackRef: number, toStackRef: number) => {
+  let fromStack = STATE[fromStackRef]
+  let toStack = STATE[toStackRef]
+
+  toStack = toStack.concat(fromStack.slice(fromStack.length - n))
+  fromStack = fromStack.slice(0, fromStack.length - n)
+
+  STATE[fromStackRef] = fromStack
+  STATE[toStackRef] = toStack
 }
 
 export function handleCommands(commandText: string) {
