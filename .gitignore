@@ -1,4 +1,8 @@
+# node
 node_modules/
 dist/
 
+# racket
 *.rkt~
+
+2022/04/part1
