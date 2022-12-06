@@ -1,5 +1,5 @@
-# Advent of code (2022)
+# advent of code
 
-Let's goooooooooooo.
+'Tis the season for coding challenges! 🎄
 
-[advent of code](https://adventofcode.com)
+[adventofcode.com](https://adventofcode.com)
