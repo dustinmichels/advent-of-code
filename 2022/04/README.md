@@ -5,8 +5,8 @@
 go test .
 
 # build
-go build part1.go
+go build main.go
 
 # run part 1
-./part1 input.txt
+./main input.txt
 ```

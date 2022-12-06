@@ -5,4 +5,5 @@ dist/
 # racket
 *.rkt~
 
-2022/04/part1
+# go
+2022/04/main
