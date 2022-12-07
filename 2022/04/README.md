@@ -1,12 +1,14 @@
 # Day 04
 
+This one is in Go!
+
 ```sh
 # run tests
 go test .
 
-# build
+# build it
 go build main.go
 
-# run part 1
+# run it
 ./main input.txt
 ```
