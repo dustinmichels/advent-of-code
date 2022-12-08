@@ -28,7 +28,10 @@ def make_or_get_node(path: PurePath, item: str):
     item_desc, item_name = item.split()
     node = Node(item_name, parent=curr)
     curr.children[item_name] = node
+
+    # is it a file?
     if item_desc != "dir":
+        node.type = "file"
         node.update_size(int(item_desc))
 
 
@@ -43,9 +46,11 @@ def parse_cmd(line: str):
 
 
 # with open("2022/07/input_test.txt") as f:
-# txt = f.read()
+#     txt = f.read()
 
-with open("input_test.txt") as f:
+# with open("input_test.txt") as f:
+
+with open("input.txt") as f:
     txt = f.read()
 
 lines = txt.split("\n")
@@ -62,4 +67,12 @@ for line in lines:
 
 # print(ROOT)
 
-dfs(ROOT)
+res = dfs(ROOT)
+# print(res)
+
+res = [x for x in res if x["type"] == "dir" and x["size"] <= 100000]
+
+s = sum(x["size"] for x in res)
+
+
+print(s)
