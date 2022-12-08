@@ -12,13 +12,13 @@ class Node:
 
     def __init__(self, name: str, parent: Node | None = None) -> None:
         self.name = name
-        self.type = "dir"  # default
+        self.type = "dir"  # default, can be changed to file
         self.parent = parent
         self.children = dict()
         self.size = 0
 
     def __repr__(self) -> str:
-        return f"<{self.name}[{self.size}]>{list(self.children.keys())}"
+        return f"<{self.name} [{self.size}]> {list(self.children.keys())}"
 
     def update_size(self, size: int):
         self.size = size
@@ -28,16 +28,8 @@ class Node:
             node = node.parent
 
 
-def dfs(root: Node):
-
-    fmt = lambda node: [{"name": node.name, "size": node.size, "type": node.type}]
-
-    if not root.children:
-        return fmt(root)
-
-    res = []
+def make_list_dfs(root: Node):
+    res = [root]
     for _, v in root.children.items():
-        res.extend(dfs(v))
-        res.extend(fmt(v))
-
+        res.extend(make_list_dfs(v))
     return res
