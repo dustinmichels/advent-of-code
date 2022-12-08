@@ -1,4 +1,4 @@
-# Day 1
+# Day 01
 
 This is written in [Rockstar](https://codewithrockstar.com/).
 

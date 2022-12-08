@@ -1,4 +1,4 @@
-# Day-05
+# Day 05
 
 I'm using [bun](https://bun.sh/) as the JS/TS runtime.
 

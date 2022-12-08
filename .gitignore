@@ -5,5 +5,5 @@ dist/
 # racket
 *.rkt~
 
-# go
+# go binaries
 2022/04/main
