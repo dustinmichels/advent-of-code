@@ -24,8 +24,9 @@ class Node:
         self.size = size
         node = self
         while node.parent:
-            node.parent.size += node.size
             node = node.parent
+            node.size = sum([node.children[x].size for x in node.children])
+            # node = node.parent
 
 
 def make_list_dfs(root: Node):

@@ -1,5 +1,6 @@
 import os
 from pathlib import PurePath
+from typing import List
 
 from node import Node, make_list_dfs
 from rich import print
@@ -28,15 +29,11 @@ def add_node(root_node: Node, path: PurePath, item: str):
         node.update_size(int(item_desc))
 
 
-def main(filename: str):
-
+def process_input(input: str):
     curr_dir = PurePath("/")
     root_node = Node("root")
 
-    with open(filename) as f:
-        txt = f.read()
-
-    lines = txt.split("\n")
+    lines = input.split("\n")
     for line in lines:
         # if it's a "cd" command, update curr_dir
         if line.startswith("$ cd"):
@@ -50,14 +47,51 @@ def main(filename: str):
         if not line.startswith("$"):
             add_node(root_node, curr_dir, line)
 
-    res = make_list_dfs(root_node)
-    res = [x for x in res if x.type == "dir" and x.size <= 100000]
-    return sum(x.size for x in res)
+    return root_node
+
+
+def part1(node_list: List[Node]):
+    node_list = [x for x in node_list if x.type == "dir" and x.size <= 100000]
+    return sum(x.size for x in node_list)
+
+
+def part2(node_list: List[Node]):
+    total_space = 70000000
+    needed_space = 30000000
+
+    unused_space = total_space - node_list[0].size
+    diff = needed_space - unused_space
+
+    node_list = sorted(
+        [x for x in node_list if x.type == "dir" and x.size >= diff],
+        key=lambda x: x.size,
+    )
+
+    return node_list[0].size
+
+
+def main(filename: str):
+
+    with open(filename) as f:
+        txt = f.read()
+
+    root_node = process_input(txt)
+    node_list = make_list_dfs(root_node)
+
+    res1 = part1(node_list)
+    res2 = part2(node_list)
+
+    return {"part1": res1, "part2": res2}
 
 
 if __name__ == "__main__":
-    test_sum = main("input_test.txt")
-    assert (test_sum) == 95437
 
-    real_sum = main("input.txt")
-    print("Sum:", real_sum)
+    test_res = main("input_test.txt")
+    assert (test_res["part1"]) == 95437
+    assert (test_res["part2"]) == 24933642
+
+    print("[tests pass]")
+
+    res = main("input.txt")
+    print("Part 1:", res["part1"])
+    print("Part 2:", res["part2"])
